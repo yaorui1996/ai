@@ -27,3 +27,7 @@
   - Hidden Layer (1) : $a^{[1]}$
   - Output Layer (2) : $\hat{y}=a^{[2]}$
 
+- Activation Function
+  - $\rm{tanh}(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}, \sigma(z)=\frac{1}{1+e^{-z}}$
+  - $\rm{Relu}=\rm{max}(0,z), \rm{Leaky Relu}=\rm{max}(0.01z,z)$
+
