@@ -8,9 +8,9 @@
 
   $\hat{y}=\sigma\left(w^T x+b\right), \text { where } \sigma(z)=\frac{1}{1+e^{-z}}$
   
-  Loss Function：$\mathcal{L}(\hat{y}, y)=-(y \log \hat{y}+(1-y) \log (1-\hat{y}))$
+  Loss Function: $\mathcal{L}(\hat{y}, y)=-(y \log \hat{y}+(1-y) \log (1-\hat{y}))$
   
-  Cost Function：$J(\omega, b)=\frac{1}{m} \sum_{i=1}^m \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)$
+  Cost Function: $J(\omega, b)=\frac{1}{m} \sum_{i=1}^m \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)$
 
 - Loss Function 选择依据：$\frac{d L}{d z}=\hat{y}-y$
 
@@ -23,11 +23,38 @@
 # Neural Network
 
 - 表示法，2 Layer NN
-  - Input Layer (0) : $a^{[0]}=x$
-  - Hidden Layer (1) : $a^{[1]}$
-  - Output Layer (2) : $\hat{y}=a^{[2]}$
+  - Input Layer (0) : $a^{[0]}=x,\ dim=n^{[0]}$
+  - Hidden Layer (1) : $a^{[1]},\ dim=n^{[1]}$
+  - Output Layer (2) : $\hat{y}=a^{[2]},\ dim=n^{[2]}=1$
+- Activation Function: $g(z)$
 
-- Activation Function
-  - $\rm{tanh}(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}, \sigma(z)=\frac{1}{1+e^{-z}}$
-  - $\rm{Relu}=\rm{max}(0,z), \rm{Leaky Relu}=\rm{max}(0.01z,z)$
+    | Name           | Function                        | Derivative                          |
+    | -------------- | ------------------------------- | ----------------------------------- |
+    | $\sigma(z)$    | $\frac{1}{1+e^{-z}}$            | $\sigma(z)(1-\sigma(z))$            |
+    | $\rm{tanh}(z)$ | $\frac{e^z-e^{-z}}{e^z+e^{-z}}$ | $1-\rm{tanh}^2(z)$                  |
+    | ReLU           | $\rm{max}(0,z)$                 | $\frac{1}{2}(1+\rm{sgn}(z))$        |
+    | Leaky ReLU     | $\rm{max}(0.01z,z)$             | $\frac{1}{2}(1.01+0.99\rm{sgn}(z))$ |
 
+- Gradient Descent
+
+  | Parameters          | Dimensions          |
+  | ------------------- | ------------------- |
+  | $\omega^{[1]}$      | $(n^{[1]},n^{[0]})$ |
+  | $b^{[1]}$           | $(n^{[1]},1)$       |
+  | $\omega^{[2]}$      | $(n^{[2]},n^{[1]})$ |
+  | $b^{[2]}$           | $(n^{[2]},1)$       |
+  | $X=A^{[0]}$         | $(n^{[0]},m)$       |
+  | $Z^{[1]},A^{[1]}$   | $(n^{[1]},m)$       |
+  | $Z^{[2]},Y=A^{[2]}$ | $(n^{[2]},m)$       |
+
+  - Cost Function
+
+    $\rm{J}(\omega^{[1]},b^{[1]},\omega^{[2]},b^{[2]})=\frac{1}{m}\sum{L(\hat{y}=a^{[2]},y)}$
+
+  - Forward Propagation
+
+    $\begin{aligned} & Z^{[1]}=\omega^{[1]} A^{[0]}+b^{[1]} \\ & A^{[1]}=g^{[1]}\left(Z^{[1]}\right) \\ & Z^{[2]}=\omega^{[2]} A^{[1]}+b^{[2]} \\ & A^{[2]}=g^{[2]}\left(Z^{[2]}\right)\end{aligned}$
+
+  - Backward Propagation
+
+    $\begin{aligned} & dZ^{[2]}=A^{[2]}-Y \\ & d\omega^{[2]}=\frac{1}{m} dZ^{[2]} A^{[1]T} \\ & db^{[2]}=\frac{1}{m} \rm{np.sum}(dZ^{[2]},axis=1,keepdims=True) \\ & dZ^{[1]}=\omega^{[2]T} dZ^{[2]} *_{element} g^{[1]\prime}\left(Z^{[1]}\right) \\ & d\omega^{[1]}=\frac{1}{m} dZ^{[1]} A^{[0]T} \\ & db^{[1]}=\frac{1}{m} \rm{np.sum}(dZ^{[1]},axis=1,keepdims=True)\end{aligned}$
