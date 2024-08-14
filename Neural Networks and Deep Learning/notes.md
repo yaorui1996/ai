@@ -61,3 +61,27 @@
 
 - Random Initialization
   - 消除隐藏层节点对称性
+
+
+
+# Deep Neural Network
+
+- Notation
+
+  | Notation                   | Meaning                |
+  | -------------------------- | ---------------------- |
+  | $L$                        | # layers               |
+  | $n^{[l]}$                  | # units in layer l     |
+  | $a^{[l]}=g^{[l]}(z^{[l]})$ | activations in layer l |
+
+- Forward Propagation
+
+  $\begin{aligned} & Z^{[l]}=W^{[l]} A^{[l-1]}+b^{[l]} \\ & A^{[l]}=g^{[l]}\left(Z^{[l]}\right)\end{aligned}$
+
+  | Parameters        | Dimensions            |
+  | ----------------- | --------------------- |
+  | $W^{[l]}$         | $(n^{[l]},n^{[l-1]})$ |
+  | $b^{[l]}$         | $(n^{[l]},1)$         |
+  | $Z^{[l]},A^{[l]}$ | $(n^{[l]},m)$         |
+  
+  
