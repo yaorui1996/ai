@@ -53,8 +53,11 @@
 
   - Forward Propagation
 
-    $\begin{aligned} & Z^{[1]}=\omega^{[1]} A^{[0]}+b^{[1]} \\ & A^{[1]}=g^{[1]}\left(Z^{[1]}\right) \\ & Z^{[2]}=\omega^{[2]} A^{[1]}+b^{[2]} \\ & A^{[2]}=g^{[2]}\left(Z^{[2]}\right)\end{aligned}$
+    $\begin{aligned} & Z^{[1]}=W^{[1]} A^{[0]}+b^{[1]} \\ & A^{[1]}=g^{[1]}\left(Z^{[1]}\right) \\ & Z^{[2]}=W^{[2]} A^{[1]}+b^{[2]} \\ & A^{[2]}=g^{[2]}\left(Z^{[2]}\right)\end{aligned}$
 
   - Backward Propagation
 
-    $\begin{aligned} & dZ^{[2]}=A^{[2]}-Y \\ & d\omega^{[2]}=\frac{1}{m} dZ^{[2]} A^{[1]T} \\ & db^{[2]}=\frac{1}{m} \rm{np.sum}(dZ^{[2]},axis=1,keepdims=True) \\ & dZ^{[1]}=\omega^{[2]T} dZ^{[2]} *_{element} g^{[1]\prime}\left(Z^{[1]}\right) \\ & d\omega^{[1]}=\frac{1}{m} dZ^{[1]} A^{[0]T} \\ & db^{[1]}=\frac{1}{m} \rm{np.sum}(dZ^{[1]},axis=1,keepdims=True)\end{aligned}$
+    $\begin{aligned} & dZ^{[2]}=A^{[2]}-Y \\ & dW^{[2]}=\frac{1}{m} dZ^{[2]} A^{[1]T} \\ & db^{[2]}=\frac{1}{m} \rm{np.sum}(dZ^{[2]},axis=1,keepdims=True) \\ & dZ^{[1]}=W^{[2]T} dZ^{[2]} *_{element} g^{[1]\prime}\left(Z^{[1]}\right) \\ & dW^{[1]}=\frac{1}{m} dZ^{[1]} A^{[0]T} \\ & db^{[1]}=\frac{1}{m} \rm{np.sum}(dZ^{[1]},axis=1,keepdims=True)\end{aligned}$
+
+- Random Initialization
+  - 消除隐藏层节点对称性
