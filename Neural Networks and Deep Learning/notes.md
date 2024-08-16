@@ -83,5 +83,31 @@
   | $W^{[l]}$         | $(n^{[l]},n^{[l-1]})$ |
   | $b^{[l]}$         | $(n^{[l]},1)$         |
   | $Z^{[l]},A^{[l]}$ | $(n^{[l]},m)$         |
-  
-  
+
+- Backward Propagation
+
+  $\begin{aligned} & dZ^{[l]}=dA^{[l]} *_{element} g^{[l]\prime}\left(Z^{[l]}\right) \\ & dW^{[l]}=\frac{1}{m} dZ^{[l]} A^{[l-1]T} \\ & db^{[l]}=\frac{1}{m} \rm{np.sum}(dZ^{[l]},axis=1,keepdims=True) \\ & dA^{[l-1]}=W^{[l]T} dZ^{[l]}\end{aligned}$
+
+- Parameters: $W^{[l]}, b^{[l]}$
+
+- Hyperparameters
+
+  - learning rate, $\alpha$
+  - \# iterations
+
+  - \# hidden layers, $L$
+  - \# hidden units, $n^{[l]}$
+  - choice of activation function
+
+- Build
+
+  ```python
+  def L_layer_model(X, Y, layers_dims, learning_rate, num_iterations):
+      parameters = initialize_parameters_deep(layers_dims)
+      for i in range(0, num_iterations):
+          AL, caches = L_model_forward(X, parameters)
+          cost = compute_cost(AL, Y)
+          grads = L_model_backward(AL, Y, caches)
+          parameters = update_parameters(parameters, grads, learning_rate)
+  	return parameters, costs
+  ```
