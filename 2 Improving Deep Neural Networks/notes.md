@@ -67,3 +67,16 @@ $\omega^{[l]}=np.random.rand(shape)*np.sqrt(\frac{2}{n^{[l-1]}})$
 # Numerical Approximation of Gradients
 
 $\frac{f(\theta+\epsilon)-f(\theta+\epsilon)}{2\epsilon} \approx g(\theta)$
+
+
+
+# Gradient Checking
+
+Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \theta_{\text {approx }}\right\|_2+\|d \theta\|_2}$: $10^{-7}\ great,\ 10^{-5},\ 10^{-3}\ worry$
+
+- Don't use in training
+- If algorithm fails grad check, look at components and try to identify bug
+- Remember regularization
+- Doesn't work with dropout
+- Run at random initialization perhaps again after some training
+
