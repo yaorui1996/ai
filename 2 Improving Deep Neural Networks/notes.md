@@ -30,3 +30,12 @@ $J\left(\omega^{[1]}, b^{[1]}, \dots, \omega^{[L]}, b^{[L]}\right)=\frac{1}{m} \
 - Frobenius Norm: $\left\|\omega\right\|_F^2=\rm{Tr}(\omega^T\omega)$
 
 $\begin{aligned} & d \omega^{[l]}=(\text {from backprop})+\frac{\lambda}{m} \omega^{[l]} \\ & \omega^{[l]}:=\omega^{[l]}-\alpha \cdot d \omega^{[l]}=(1-\frac{\alpha\lambda}{m})\omega^{[l]}-\alpha(\text {from backprop})\end{aligned}$
+
+
+
+# Dropout Regularization
+
+- Illustrate with layer 3, keep-prob = 0.8
+- D3 = np.random.rand(A3.shape[0], A3.shape[1]) < keep-prob
+- A3 *= D3
+- A3 /= keep-prob
