@@ -50,6 +50,8 @@ $x -= \mu,\  x /= \sigma$
 
 # Weight Initialization
 
+[Symmetry Breaking versus Zero Initialization](https://community.deeplearning.ai/t/symmetry-breaking-versus-zero-initialization/16061)
+
 $z=\omega_1 x_1+\omega_2 x_2+...+\omega_n x_n+b$
 
 $Var(\omega)=\frac{1}{n} \ or\  \frac{2}{n}$
