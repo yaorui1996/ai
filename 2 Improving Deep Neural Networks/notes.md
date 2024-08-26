@@ -92,6 +92,8 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
 
 # Mini-batch gradient descent
 
+- Mini-batch t: $X^{\{t\}}, Y^{\{t\}}$
+
 - Mini-batch size = m: Batch gradient descent
 
   - training sets too large
