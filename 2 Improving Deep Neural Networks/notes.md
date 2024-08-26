@@ -1,4 +1,4 @@
-# Train/Dev/Test Sets
+# Train/Dev/Test sets
 
 - Previous: 70/30, 60/20/20
 - Big Data: 98/1/1
@@ -7,7 +7,7 @@
 
 
 
-# Bias and Variance
+# Bias and variance
 
 1. high bias (train sets performance)
    - Bigger network
@@ -21,7 +21,7 @@
 
 
 
-# L2 Regularization
+# L2 regularization
 
 $J(\omega, b)=\frac{1}{m} \sum_{i=1}^m L\left(\hat{y}^{(i)}, y^{(i)}\right)+\frac{\lambda}{2 m}\|\omega\|_2^2$
 
@@ -33,22 +33,28 @@ $\begin{aligned} & d \omega^{[l]}=(\text {from backprop})+\frac{\lambda}{m} \ome
 
 
 
-# Dropout Regularization
+# Dropout regularization
 
 - Illustrate with layer 3, keep-prob = 0.8
-- D3 = np.random.rand(A3.shape[0], A3.shape[1]) < keep-prob
-- A3 *= D3
-- A3 /= keep-prob
+- Forward Propagation
+  - D3 = np.random.rand(A3.shape[0], A3.shape[1]) < keep-prob
+  - A3 *= D3
+  - A3 /= keep-prob
+
+- Backward Propagation
+  - dA3 *= D3
+  - dA3 /= keep-prob
 
 
 
-# Normalizing Training Sets
+
+# Normalizing training sets
 
 $x -= \mu,\  x /= \sigma$
 
 
 
-# Weight Initialization
+# Weight initialization
 
 [Symmetry Breaking versus Zero Initialization](https://community.deeplearning.ai/t/symmetry-breaking-versus-zero-initialization/16061)
 
@@ -66,13 +72,13 @@ $\omega^{[l]}=np.random.rand(shape)*np.sqrt(\frac{2}{n^{[l-1]}})$
 
 
 
-# Numerical Approximation of Gradients
+# Numerical approximation of gradients
 
 $\frac{f(\theta+\epsilon)-f(\theta+\epsilon)}{2\epsilon} \approx g(\theta)$
 
 
 
-# Gradient Checking
+# Gradient checking
 
 Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \theta_{\text {approx }}\right\|_2+\|d \theta\|_2}$: $10^{-7}\ great,\ 10^{-5},\ 10^{-3}\ worry$
 
@@ -82,3 +88,29 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
 - Doesn't work with dropout
 - Run at random initialization perhaps again after some training
 
+
+
+# Mini-batch gradient descent
+
+- Mini-batch size = m: Batch gradient descent
+
+  - training sets too large
+
+- Mini-batch size = 1: Stochastic gradient descent
+
+  - lose speedup from vectorization, inefficient
+
+- In-between, mini-batch size not too big/small
+
+  - fastest learning
+  - vectorization
+
+  - make progress without processing entire training set
+
+- Choosing your mini-batch size
+
+  - If small training set: use batch gradient descent. (m <= 2000)
+
+  - Typical mini-batch size: 64, 128, 256, 512
+
+  - Make sure mini-batch fit in CPU/GPU memory. $X^{\{t\}}, Y^{\{t\}}$
