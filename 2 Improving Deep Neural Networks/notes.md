@@ -116,3 +116,11 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
   - Typical mini-batch size: 64, 128, 256, 512
 
   - Make sure mini-batch fit in CPU/GPU memory. $X^{\{t\}}, Y^{\{t\}}$
+
+
+
+# Exponentially weighted averages
+
+- $\nu_t=\beta\nu_{t-1}+(1-\beta)\theta_t$
+
+-  $(1-\epsilon)^{1/\epsilon}=\frac{1}{e}$, $\nu_t$近似是前$\frac{1}{1-\beta}$个的平均值
