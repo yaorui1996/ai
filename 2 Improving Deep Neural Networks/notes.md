@@ -180,3 +180,10 @@ $$
 ## Learning Rate Decay
 
 $\alpha=\frac{1}{1+decayRate \times epochNumber} \alpha_0$
+
+
+
+# Local Optima in Neural Networks
+
+局部最小值概率非常小，更大可能是鞍点
+
