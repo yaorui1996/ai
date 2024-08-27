@@ -174,3 +174,9 @@ $$
   - $\epsilon$: $10^{-8}$
 
 - Adam: Adaptive moment estimation
+
+
+
+## Learning Rate Decay
+
+$\alpha=\frac{1}{1+decayRate \times epochNumber} \alpha_0$
