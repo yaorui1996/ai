@@ -1,4 +1,4 @@
-# Train/Dev/Test sets
+# Train/Dev/Test Sets
 
 - Previous: 70/30, 60/20/20
 - Big Data: 98/1/1
@@ -7,7 +7,7 @@
 
 
 
-# Bias and variance
+# Bias and Variance
 
 1. high bias (train sets performance)
    - Bigger network
@@ -21,7 +21,7 @@
 
 
 
-# L2 regularization
+# L2 Regularization
 
 $J(\omega, b)=\frac{1}{m} \sum_{i=1}^m L\left(\hat{y}^{(i)}, y^{(i)}\right)+\frac{\lambda}{2 m}\|\omega\|_2^2$
 
@@ -33,7 +33,7 @@ $\begin{aligned} & d \omega^{[l]}=(\text {from backprop})+\frac{\lambda}{m} \ome
 
 
 
-# Dropout regularization
+# Dropout Regularization
 
 - Illustrate with layer 3, keep-prob = 0.8
 - Forward Propagation
@@ -48,13 +48,13 @@ $\begin{aligned} & d \omega^{[l]}=(\text {from backprop})+\frac{\lambda}{m} \ome
 
 
 
-# Normalizing training sets
+# Normalizing Training Sets
 
 $x -= \mu,\  x /= \sigma$
 
 
 
-# Weight initialization
+# Weight Initialization
 
 [Symmetry Breaking versus Zero Initialization](https://community.deeplearning.ai/t/symmetry-breaking-versus-zero-initialization/16061)
 
@@ -72,13 +72,13 @@ $\omega^{[l]}=np.random.rand(shape)*np.sqrt(\frac{2}{n^{[l-1]}})$
 
 
 
-# Numerical approximation of gradients
+# Numerical Approximation of Gradients
 
 $\frac{f(\theta+\epsilon)-f(\theta+\epsilon)}{2\epsilon} \approx g(\theta)$
 
 
 
-# Gradient checking
+# Gradient Checking
 
 Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \theta_{\text {approx }}\right\|_2+\|d \theta\|_2}$: $10^{-7}\ great,\ 10^{-5},\ 10^{-3}\ worry$
 
@@ -90,7 +90,7 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
 
 
 
-# Mini-batch gradient descent
+# Mini-batch Gradient Descent
 
 - Mini-batch t: $X^{\{t\}}, Y^{\{t\}}$
 
@@ -119,8 +119,58 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
 
 
 
-# Exponentially weighted averages
+# Exponentially Weighted Averages
 
 - $\nu_t=\beta\nu_{t-1}+(1-\beta)\theta_t$
 
 -  $(1-\epsilon)^{1/\epsilon}=\frac{1}{e}$, $\nu_t$近似是前$\frac{1}{1-\beta}$个的平均值
+
+- Bias correction $\frac{\nu_t}{1-\beta^t}$, because assuming $\nu_0=0$
+
+
+
+# Gradient Descent with Momentum
+
+- $V_{d W}=\beta V_{d W}+(1-\beta) d W$
+- $V_{d b}=\beta V_{d b}+(1-\beta) d b$
+- $W:=W-\alpha V_{d W}, \quad b:=b-\alpha V_{d b}$
+
+-  Hyperparameters: $\alpha, \beta$
+  - $\beta=0.9$
+
+
+
+# RMSprop
+
+- $S_{d W}=\beta S_{d W}+(1-\beta) d W^2$
+
+- $S_{d b}=\beta S_{d b}+(1-\beta) d b^2$
+
+- $W:=W-\alpha \frac{dW}{\sqrt{S_{dW}}}, \quad b:=b-\alpha \frac{db}{\sqrt{S_{db}}}$
+
+
+
+# Adam Optimization Algorithm
+
+$$
+\begin{aligned}
+& V_{dW}=0,S_{dW}=0,V_{db}=0,S_{db}=0 \\
+& \text{On iteration t:} \\
+& \quad \text{Compute dW,db using current mini-batch} \\
+& \quad V_{d W}=\beta_1 V_{d W}+(1-\beta_1) d W, V_{d b}=\beta_1 V_{d b}+(1-\beta_1) d b \quad \leftarrow momentum\ \beta_1 \\
+& \quad S_{d W}=\beta_2 S_{d W}+(1-\beta_2) d W^2, S_{d b}=\beta_2 S_{d b}+(1-\beta_2) d b^2 \quad \leftarrow RMSprop\ \beta_2 \\
+& \quad V_{dW}^{corrected}=V_{dW}/(1-\beta_1^{t}),V_{db}^{corrected}=V_{db}/(1-\beta_1^{t}) \\
+& \quad S_{dW}^{corrected}=S_{dW}/(1-\beta_2^{t}),S_{db}^{corrected}=S_{db}/(1-\beta_2^{t}) \\
+& \quad W:=W-\alpha \frac{V_{dW}^{corrected}}{\sqrt{S_{dW}^{corrected}}+\epsilon}, \quad b:=b-\alpha \frac{V_{db}^{corrected}}{S_{db}^{corrected}+\epsilon} \\
+\end{aligned}
+$$
+
+- Hyperparameters choice
+
+  - $\alpha$: needs to be tune
+  - $\beta_1: 0.9 \qquad \rightarrow (dW)$
+
+  - $\beta_2: 0.999 \quad \rightarrow (dW^2)$
+  - $\epsilon$: $10^{-8}$
+
+- Adam: Adaptive moment estimation
