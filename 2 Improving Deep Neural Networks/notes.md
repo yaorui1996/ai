@@ -117,6 +117,10 @@ Check $\frac{\left\|d \theta_{\text {approx }}-d \theta\right\|_2}{\left\|d \the
 
   - Make sure mini-batch fit in CPU/GPU memory. $X^{\{t\}}, Y^{\{t\}}$
 
+- Shuffle & Partition
+
+  ![kiank_shuffle](pictures/kiank_shuffle.png)![kiank_partition](pictures/kiank_partition.png)
+
 
 
 # Exponentially Weighted Averages
