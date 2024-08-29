@@ -176,14 +176,20 @@ $$
 
   - $\beta_2: 0.999 \quad \rightarrow (dW^2)$
   - $\epsilon$: $10^{-8}$
-
 - Adam: Adaptive moment estimation
+- Adam paper: https://arxiv.org/pdf/1412.6980.pdf
 
 
 
 ## Learning Rate Decay
 
-$\alpha=\frac{1}{1+decayRate \times epochNumber} \alpha_0$
+- Decay on every iteration
+
+  $\alpha=\frac{1}{1+decayRate \times epochNumber} \alpha_0$
+
+- Fixed interval scheduling
+
+  $\alpha=\frac{1}{1+\text { decayRate } \times\left\lfloor\frac{\text { epochNum }}{\text { timeInterval }}\right\rfloor} \alpha_0$
 
 
 
