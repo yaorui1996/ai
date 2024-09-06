@@ -197,3 +197,22 @@ $$
 
 局部最小值概率非常小，更大可能是鞍点
 
+
+
+# Tuning Process
+
+- Try random values
+- Don't use a grid
+- Coarse to fine
+
+
+
+# Hyperparameter tuning
+
+- Picking hyperparameters at random
+
+- Appropriate scale for hyperparameters
+- Hyperparameters for exponentially weighted averages
+
+
+
