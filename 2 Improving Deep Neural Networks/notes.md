@@ -216,3 +216,11 @@ $$
 
 
 
+# Hyperparameters Tuning in Practice
+
+- Pandas: babysitting one model
+- Caviar: training many models in parallel
+
+
+
+# Batch Normalization
