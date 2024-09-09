@@ -165,7 +165,7 @@ $$
 & \quad S_{d W}=\beta_2 S_{d W}+(1-\beta_2) d W^2, S_{d b}=\beta_2 S_{d b}+(1-\beta_2) d b^2 \quad \leftarrow RMSprop\ \beta_2 \\
 & \quad V_{dW}^{corrected}=V_{dW}/(1-\beta_1^{t}),V_{db}^{corrected}=V_{db}/(1-\beta_1^{t}) \\
 & \quad S_{dW}^{corrected}=S_{dW}/(1-\beta_2^{t}),S_{db}^{corrected}=S_{db}/(1-\beta_2^{t}) \\
-& \quad W:=W-\alpha \frac{V_{dW}^{corrected}}{\sqrt{S_{dW}^{corrected}}+\epsilon}, \quad b:=b-\alpha \frac{V_{db}^{corrected}}{S_{db}^{corrected}+\epsilon} \\
+& \quad W:=W-\alpha \frac{V_{dW}^{corrected}}{\sqrt{S_{dW}^{corrected}}+\epsilon}, \quad b:=b-\alpha \frac{V_{db}^{corrected}}{\sqrt{S_{dW}^{corrected}}+\epsilon} \\
 \end{aligned}
 $$
 
@@ -224,3 +224,16 @@ $$
 
 
 # Batch Normalization
+
+Given some intermediate values in NN: $z^{(1)}, \ldots, z^{(n)}$
+
+- $\mu=\frac{1}{m} \sum_i z^{(i)}$
+- $\sigma^2=\frac{1}{m} \sum_i\left(z^{(i)}-\mu\right)^2$
+
+- $z_{\text {norm }}^{(i)}=\frac{z^{(i)}-\mu}{\sqrt{\sigma^2+\epsilon}}, \ \text{in case} \ \sigma=0$
+
+- $\tilde{z}^{(i)}=\gamma z_{\text {norm }}^{(i)}+\beta$
+
+Working with mini-batches
+
+- Delete $b^{[l]}$
