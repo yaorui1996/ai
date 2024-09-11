@@ -257,3 +257,15 @@ $\mu, \sigma^2$: estimate using exponentially weighted average across mini-batch
   $J\left(\omega^{[1]}, b^{[1]}, \ldots\right)=\frac{1}{m} \sum_{i=1}^m \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)$
 
 ​	$d z^{[L]}=\hat{y}-y$
+
+
+
+# Deep Learning Frameworks
+
+- Choosing deep learning frameworks
+  - Ease of programming (development and deployment)
+  - Running speed
+  - Truly open (open source with good governance)
+
+- TensorFlow
+
