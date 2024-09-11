@@ -237,3 +237,23 @@ Given some intermediate values in NN: $z^{(1)}, \ldots, z^{(n)}$
 Working with mini-batches
 
 - Delete $b^{[l]}$
+
+
+
+# Batch Norm at Test Time
+
+$\mu, \sigma^2$: estimate using exponentially weighted average across mini-batch
+
+
+
+# Softmax Regression
+
+- $t=e^{\left(z^{[l]}\right)},\ a^{[l]}=\frac{e^{z^{[l]}}}{\sum_i t_i}$
+
+- Loss function
+
+  $\mathcal{L}(\hat{y}, y)=-\sum_{j} y_j \log \hat{y}_j$
+  
+  $J\left(\omega^{[1]}, b^{[1]}, \ldots\right)=\frac{1}{m} \sum_{i=1}^m \mathcal{L}\left(\hat{y}^{(i)}, y^{(i)}\right)$
+
+​	$d z^{[L]}=\hat{y}-y$
